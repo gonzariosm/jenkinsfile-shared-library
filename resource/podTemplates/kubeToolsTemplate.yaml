@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    agent: kubeTools
+  name: kube-tools
+spec:
+  containers:
+    - name: kube-tools
+      imagePullPolicy: always
+      image: bitnami/kubectl
+      command:
+        - cat
+      tty: true
+    - name: jnlp
+      image: jenkinsci/jnlp-slave:3.29-1
+      imagePullPolicy: Always
+      command:
+        - /usr/local/bin/jenkins-slave
